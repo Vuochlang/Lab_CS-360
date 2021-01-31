@@ -105,6 +105,24 @@ PERSON findName(PERSON sentinel, char* name1) {
     }
 }
 
+PERSON reversePerson(PERSON firstPerson, PERSON lastPerson) {
+    PERSON temp, current, nextPerson, tempFirst;
+    current = tempFirst = firstPerson;
+    nextPerson = current -> next;
+    while (nextPerson != NULL) {
+        temp = nextPerson -> next;
+        nextPerson -> next = current;
+        if (temp == NULL)
+            break;
+        current = nextPerson;
+        nextPerson = temp;
+    }
+    firstPerson -> next = NULL;
+    firstPerson = nextPerson;
+    lastPerson = tempFirst;
+    return firstPerson;
+}
+
 int main(){
     char name[8][10] ={
             "William",
@@ -186,12 +204,21 @@ int main(){
     childrenOf(sally);
     childrenOf(william);
 
-    // print the people's name in the LinkedList that connect one person to another
     lastPerson = firstPerson;
-    printf("\nprint people names:\n");
+    printf("\nprint people names before reversing:\n");
     while (lastPerson != NULL) {
         printf("person = %s\n", lastPerson -> name);
         lastPerson = lastPerson -> next;
+    }
+
+    firstPerson = reversePerson(firstPerson, lastPerson);
+
+    // print the people's name in the LinkedList that connect one person to another
+    PERSON printNext = firstPerson;
+    printf("\nprint people names after reversing the list:\n");
+    while (printNext != NULL) {
+        printf("person = %s\n", printNext -> name);
+        printNext = printNext -> next;
     }
 
     // free all allocated memory
