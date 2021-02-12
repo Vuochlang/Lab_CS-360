@@ -1,3 +1,3 @@
 # Lab_CS-360
 
-<p> There is one README file in each folder to describe the requirement.</p>
+<h3>There is one README.md in each folder for their own description and requirments. </h3>
