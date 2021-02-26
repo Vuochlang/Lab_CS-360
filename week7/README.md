@@ -3,7 +3,7 @@
 2/26/2021
 
 <h3>Week 7: 
-The "sub" program will take input from the user via stdin, and for every pair of
+<br>The "sub" program will take input from the user via stdin, and for every pair of
 command line arguments, it will replace every instance of the first character
 in the input with the second, writing the result to stdout.</h3>
 
