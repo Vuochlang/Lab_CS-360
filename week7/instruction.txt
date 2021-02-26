@@ -1,0 +1,58 @@
+You will be tasked with producing a program called "sub".
+"sub" is called with an even number of command line arguments. These command
+line arguments are single characters, and always come in pairs.
+
+In other words:
+
+"./sub a b" works because it has 2 command line arguments, and 2 is even.
+"./sub a b 1" doesn't work because it has 3 command line arguments, and 3 is odd.
+"./sub a b 1 2" works.
+"./sub a b c d e" doesn't work.
+"./sub" works because 0 is even.
+"./sub 1 2 3 4 5 6 7 8" works.
+"./sub yes no" may or may not work, but you don't worry about this case.
+... and so on.
+
+You will not be expected to account for any errors, including (but not limited
+to) errors caused by inputting an invalid number of command line arguments.
+
+The "sub" program will take input from the user via stdin, and for every pair of
+command line arguments, it will replace every instance of the first character
+in the input with the second, writing the result to stdout.
+
+For example, "./sub e z l t" forms the pairs (e, z) and (l, t).  If the user passes
+the string "hello world" to stdin, every instance of the character "e" will be
+replaced with the character "z" and every instance of the character "l" will be
+replaced with the character "t".  The result, "hztto wortd", is written to stdout.
+
+The above process will be done via a busy loop of reading, performing the
+operations described for more and more user input strings until CTRL-C is issued.
+You can automatically tell when a string ends because the user will press Enter
+(That is to say, you don't have to write any special code to detect when the
+string should end because facilities such as "read" will do it for you.)
+
+You're free to search the input for a special exit phrase (such as "quit" or
+"exit") to end the program cleanly, but that is NOT required.
+
+
+NOTES:
+- If your code at any point relies on regular expressions, you're probably
+over-complicating it.  A good hint is that the program should only have to deal
+with one character at a time.
+- For ease of coding, the character replacement program can be case-sensitive.
+This is not a strict requirement, however, and you are free to implement a
+case-insensitive variant if you wish.
+
+
+CAVEATS:
+- The program must use the "fork" command to create a child process, and the labor
+must be divided between the parent and child. One process (either the parent or child)
+will be in charge of repeatedly reading from stdin, and the other will replace the
+characters as described above and write the new characters to stdout.  Note that "fork"
+should only have to be called once.
+- To facilitate the division of labor, you will be required to use the "pipe" command
+to allow characters (or strings) to be passed between the parent and child processes.
+Remember to close the pipes as necessary!
+
+
+
